@@ -23,7 +23,7 @@ if (isset($options['h'])) {
     echo "  \e[0;32m-d, --dry     \e[0m  Run without actual remove" . PHP_EOL . PHP_EOL;
 
     echo "\e[0;33mExample:\e[0m" . PHP_EOL;
-    echo '  ./vendor/bin/cleanup -v --path symfony --include *.zip,*.rar --exclude doc,docs,test' . PHP_EOL;
+    echo '  ./vendor/bin/cleanup -v --path vendor/symfony --include *.zip,*.rar --exclude doc,docs,test' . PHP_EOL;
     return;
 }
 
@@ -66,12 +66,11 @@ $patterns = [
 $dirname = dirname(__DIR__, 2);
 
 if (isset($options['p'])) {
-    $dirname .= '/' . $options['p'];
-
     if (! file_exists($dirname)) {
         echo 'Directory not found!' . PHP_EOL;
         return;
     }
+    $dirname = $options['p'];
 }
 
 if (isset($options['i'])) {
